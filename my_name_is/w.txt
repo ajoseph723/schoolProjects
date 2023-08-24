@@ -1,0 +1,17 @@
+ 17:31:58 up 20 days,  7:59, 15 users,  load average: 0.05, 0.23, 0.50
+USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
+ishaikh1 pts/2    10.22.41.196     17:24    6.00s  0.20s  0.20s -bash
+nmanouso pts/3    10.22.40.166     16:43    5:32   0.57s  0.57s -bash
+nfleet   pts/4    10.14.211.3      16:17    1:11m  0.08s  0.08s -bash
+edavid3  pts/54   10.32.0.214      16:45    1:07   0.32s  0.32s -bash
+bmyers60 pts/55   10.32.0.209      16:45    5.00s  0.30s  0.04s nano my_name_is.cpp
+aburne11 pts/56   10.32.0.218      16:59    1:01   0.32s  0.06s nano my_name_is.cpp
+enielso2 pts/57   10.32.0.205      17:20    1:45   0.11s  0.11s -bash
+aalramad pts/61   10.32.0.201      16:45    2:29   0.15s  0.01s nano a.cpp
+cflack1  pts/66   10.32.0.222      17:06    2:22   0.23s  0.23s -bash
+jgyorki  pts/67   10.32.0.217      16:45   43.00s  0.36s  0.11s nano my_name_is.cpp
+awalla36 pts/63   10.32.0.202      16:55   44.00s  0.18s  0.05s nano my_name_is.cpp
+ajosep24 pts/64   10.32.0.215      17:11    6.00s  0.25s  0.02s w
+jkotik1  pts/65   10.32.0.213      16:56    5.00s  0.25s  0.03s nano my_name_is.cpp
+cmurph59 pts/69   10.32.0.206      17:21    3.00s  0.22s  0.03s nano my_name_is.cpp
+ysergeev pts/68   10.22.51.186     17:25   38.00s  0.14s  0.14s -bash
