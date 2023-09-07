@@ -40,12 +40,15 @@ bigint::bigint(const char value[])
     }
 }
 
-void bigint::debugPrint(std::ostream&) const {
+void bigint::debugPrint(std::ostream &) const
+{
 
-    for(int i=0; i<capacity; ++i) {
+    for (int i = 0; i < capacity; ++i)
+    {
         std::cout << num[i];
 
-    if(i != capacity) std::cout << "|";
+        if (i != capacity)
+            std::cout << "|";
     }
     std::cout << std::endl;
 }
@@ -92,4 +95,22 @@ bool operator==(const bigint &lhs, const bigint &rhs)
     }
 
     return true;
+}
+
+bigint operator+(const bigint &lhs, const bigint &rhs)
+{
+    int currentDigit = 0;
+    bigint result;
+
+    for (int i = capacity - 1; i >= 0; --i)
+    {
+        if ((currentDigit / 10) > 0)
+            currentDigit = (currentDigit / 10);
+        else
+            currentDigit = 0;
+
+        currentDigit = currentDigit + lhs.num[i] + rhs.num[i];
+        result.num[i] = result.num[i] + (currentDigit % 10);
+    }
+    return result;
 }
