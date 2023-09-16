@@ -1,6 +1,8 @@
-Grades are out of 10 for the assignments and out of 100 for the projects
+Grades are out of 10 for the labs and out of 100 for the projects
+
 Lab 1: 10
 Lab 2: 10
 Lab 3: 0 - No submission.
+
 Project 1: 
 M1: 100
