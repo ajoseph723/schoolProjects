@@ -19,7 +19,7 @@ OPTS = -g -Werror -W -Wunused -Wuninitialized -Wshadow -std=c++17
 
 # For milestone 2 add: test_add test_subscript
 # For milestone 3 add: test_times_10 test_times_digit test_multiply
-TESTS  = test_default_ctor test_int_ctor test_equal test_c_str_ctor test_add
+TESTS  = test_default_ctor test_int_ctor test_equal test_c_str_ctor test_add ./test_subscript ./add
 
 
 ###############################################################
@@ -36,13 +36,13 @@ msg:
 # Build and run all tests and output demonstration
 #
 tests: $(TESTS)
-	#./test_default_ctor
-	#./test_int_ctor
-	#./test_equal
-	#./test_c_str_ctor
+	./test_default_ctor
+	./test_int_ctor
+	./test_equal
+	./test_c_str_ctor
 #Milestone 2 - remove #
 	./test_add
-	#./test_subscript
+	./test_subscript
 #Milestone 3
 	#./test_times_10
 	#./test_times_digit
