@@ -84,6 +84,20 @@ std::ostream &operator<<(std::ostream &stream, const bigint &obj)
     return stream;
 }
 
+std::istream &operator>>(std::istream &stream, bigint &obj)
+{
+    // makes a character array the size of bigint + room for a ;
+    char a[capacity + 1];
+    stream >> a;
+    int i = 0;
+    // finds the ; within the character array and sets it equal to 0
+    while (a[i] != ';')
+        ++i;
+    a[i] = 0;
+    obj = a;
+    return stream;
+}
+
 bool operator==(const bigint &lhs, const bigint &rhs)
 {
     for (int i = 0; i < capacity; ++i)
@@ -113,4 +127,23 @@ bigint operator+(const bigint &lhs, const bigint &rhs)
         result.num[i] = result.num[i] + (currentDigit % 10);
     }
     return result;
+}
+
+int bigint::operator[](const int &digit)
+{
+    // figuring out where the number begins in the array
+    int lastNum = 0;
+    bool found = false;
+    while (found == false && lastNum < capacity)
+    {
+        if (num[lastNum] != 0)
+            found = true;
+        else
+            ++lastNum;
+    }
+    // return -1 if the number inputted isn't in the array
+    if ((capacity - digit) < lastNum)
+        return -1;
+    else
+        return num[lastNum + digit];
 }
