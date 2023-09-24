@@ -2,7 +2,9 @@ Grades are out of 10 for the labs and out of 100 for the projects
 
 Lab 1: 10
 Lab 2: 10
-Lab 3: 0 - No submission.
+Lab 3: 7 - Not enough unique test cases.
+Lab 4: 8 : You need create functions that return nothing and take no parameters.
 
 Project 1: 
 M1: 100
+M2: 70 - No test cases for []; Code fails at when testing [].
