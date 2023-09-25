@@ -129,7 +129,7 @@ bigint operator+(const bigint &lhs, const bigint &rhs)
     return result;
 }
 
-int bigint::operator[](const int &digit)
+int bigint::operator[](const int &digit) const
 {
     // figuring out where the number begins in the array
     int lastNum = 0;
@@ -145,5 +145,79 @@ int bigint::operator[](const int &digit)
     if ((capacity - digit) < lastNum)
         return -1;
     else
-        return num[lastNum + digit];
+        return num[capacity - (digit + 1)];
+}
+
+bigint bigint::timesDigit(int rhs) const
+{
+    int currentDigit = 0;
+    bigint result;
+
+    for (int i = capacity - 1; i >= 0; --i)
+    {
+        if ((currentDigit / 10) > 0)
+            currentDigit = (currentDigit / 10);
+        else
+            currentDigit = 0;
+
+        currentDigit = (num[i] * rhs) + currentDigit;
+        result.num[i] = result.num[i] + (currentDigit % 10);
+    }
+    return result;
+}
+
+// REQUIRES: rhs >=0
+bigint bigint::times10(int x) const
+{
+    bigint result;
+    if (x < 0)
+        return -1;
+
+    // shifts all indexes over x places
+    for (int i = x; i < capacity; ++i)
+        result.num[i - x] = num[i];
+
+    return result;
+}
+
+bigint operator*(const bigint &lhs, const bigint &rhs)
+{
+    int maxDigits = 0;
+    int lastNum = 0;
+    while (lhs.num[lastNum] == 0 && rhs.num[lastNum] == 0)
+        ++lastNum;
+
+    maxDigits = capacity - lastNum;
+
+    bigint A;
+    bigint B;
+    if (lhs.num[lastNum] == 0)
+    {
+        B = lhs;
+        A = rhs;
+        while (lhs.num[lastNum] == 0)
+        {
+            ++lastNum;
+        }
+        maxDigits = capacity - lastNum + 1;
+    }
+    else
+    {
+        A = lhs;
+        B = rhs;
+        while (rhs.num[lastNum] == 0)
+        {
+            ++lastNum;
+        }
+        maxDigits = capacity - lastNum + 1;
+    }
+
+    bigint product = 0;
+    bigint temp;
+    for (int i = 0; i < maxDigits - 1; ++i)
+    {
+        temp = A.timesDigit(B[i]);
+        product = product + temp.times10(i);
+    }
+    return product;
 }
