@@ -21,7 +21,11 @@ public:
 
     friend bigint operator+(const bigint &, const bigint &);
 
-    int operator[](const int &);
+    int operator[](const int &) const;
+
+    bigint timesDigit(int) const;
+    bigint times10(int) const;
+    friend bigint operator*(const bigint &, const bigint &);
 
 private:
     int num[capacity];
