@@ -54,3 +54,29 @@ char String::operator[](int i) const
     assert(i < length());
     return str[i];
 }
+
+String &String::operator+=(const String &rhs)
+{
+    int offset = 0;
+    int rhsLen = rhs.length();
+    int i = 0;
+    while (i < rhsLen)
+    {
+        str[offset + i] = rhs.str[i];
+        ++i;
+    }
+    return *this;
+}
+
+String operator+(String lhs, const String &rhs)
+{
+    return lhs += rhs;
+}
+
+bool String::operator==(const String &rhs) const
+{
+    int i = 0;
+    while (str[i] != 0 && str[i] == rhs.str[i])
+        ++i;
+    return str[i] == rhs.str[i];
+}
