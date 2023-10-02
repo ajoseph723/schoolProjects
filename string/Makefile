@@ -34,7 +34,7 @@ OPTIONS = -g -Werror -W -Wunused -Wuninitialized -Wshadow -std=c++17
 #  These are ones you should build:
 MYCTOR = test_default_ctor test_ctor_charArray test_ctor_char
 MYREL  = test_equal test_lessThan 
-MYOPS  = #test_concat test_subscript test_len_cap test_input test_find_char test_find_string test_substring 
+MYOPS  = test_concat test_input test_subscript test_len_cap test_find_char test_find_string test_substring 
 MYM2   = #test_ctor_copy test_swap_assign
 
 
@@ -79,13 +79,13 @@ tests: $(MYCTOR) $(MYOPS) $(MYREL)
 	./test_ctor_char 
 	./test_ctor_charArray
 	./test_lessThan 
-#	./test_concat 
-#	./test_subscript 
-#	./test_len_cap
-#	./test_input 
-#	./test_find_char 
-#	./test_find_string 
-#	./test_substring
+	./test_concat 
+	./test_subscript 
+	./test_len_cap
+	./test_input 
+	./test_find_char 
+	./test_find_string 
+	./test_substring
 #Milestone 2
 #	./test_ctor_copy 
 #	./test_swap_assign 
