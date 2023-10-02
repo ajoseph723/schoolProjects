@@ -80,3 +80,40 @@ bool String::operator==(const String &rhs) const
         ++i;
     return str[i] == rhs.str[i];
 }
+
+bool String::operator<(const String &rhs) const
+{
+    int i = 0;
+    while ((str[i] != 0 && rhs.str[i] != 0) && (str[i] == rhs.str[i]))
+        ++i;
+    return str[i] < rhs.str[i];
+}
+
+bool operator==(char lhs[], const String &rhs) { return String(lhs) == rhs; }
+bool operator==(char lhs, const String &rhs) { return String(lhs) == rhs; }
+
+bool operator<(char lhs[], const String &rhs) { return String(lhs) < rhs; }
+bool operator<(char lhs, const String &rhs) { return String(lhs) < rhs; }
+
+bool operator!=(const String &lhs, const String &rhs) { return !(lhs == rhs); }
+bool operator>(const String &lhs, const String &rhs) { return lhs > rhs; }
+
+bool operator<=(const String &lhs, const String &rhs) { return !(lhs > rhs); }
+bool operator>=(const String &lhs, const String &rhs) { return !(lhs < rhs); }
+
+String String::substr(int start, int end) const
+{
+    String result;
+    if (start < 0)
+        start = 0;
+    if (end >= length())
+        end = length() - 1;
+    if (start > end)
+        return String();
+
+    for (int i = start; i <= end; ++i)
+    {
+        result.str[start - i] = str[i];
+    }
+    return result;
+}
