@@ -57,7 +57,7 @@ char String::operator[](int i) const
 
 String &String::operator+=(const String &rhs)
 {
-    int offset = 0;
+    int offset = length();
     int rhsLen = rhs.length();
     int i = 0;
     while (i < rhsLen)
@@ -65,6 +65,7 @@ String &String::operator+=(const String &rhs)
         str[offset + i] = rhs.str[i];
         ++i;
     }
+    str[offset + i] = 0;
     return *this;
 }
 
@@ -113,7 +114,58 @@ String String::substr(int start, int end) const
 
     for (int i = start; i <= end; ++i)
     {
-        result.str[start - i] = str[i];
+        result += str[i];
     }
+
     return result;
+}
+
+std::istream &operator>>(std::istream &stream, String &obj)
+{
+    // makes a character array the size of STRING_SIZE - 1
+    char a[STRING_SIZE - 1];
+    stream >> a;
+    obj = a;
+    return stream;
+}
+
+std::ostream &operator<<(std::ostream &stream, const String &obj)
+{
+    int i = 0;
+    while (obj.str[i] != 0)
+    {
+        stream << obj.str[i];
+        ++i;
+    }
+    return stream;
+}
+
+int String::findch(int start, char obj) const
+{
+    for (int i = start; i < length(); ++i)
+        if (str[i] == obj)
+            return i;
+    return -1;
+}
+
+int String::findstr(int start, const String &obj) const
+{
+    int objLen = obj.length();
+    int i = start;
+    String temp;
+    while (findch(i, obj[0]) != -1)
+    {
+        for (int j = 0; j < objLen; ++j)
+        {
+            if (str[j + findch(i, obj[0])] != 0)
+            {
+                temp += str[j + findch(i, obj[0])];
+            }
+        }
+        if (temp == obj)
+            return findch(i, obj[0]);
+        temp = "";
+        i = findch(i, obj[0]) + 1;
+    }
+    return -1;
 }
