@@ -9,5 +9,5 @@ Lab 5: 10
 Project 1: 
 M1: 100
 M2: 70 - No test cases for []; Code fails at when testing [].
-M3: 0 - No submission.
+M3: 70 - (Regrade) Missing multiply.cpp; missing .txt input files; Need more test cases for times10 and digit. 
 Bonus: 
