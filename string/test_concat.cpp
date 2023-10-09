@@ -14,6 +14,7 @@ int main()
         String b("abc");
         String c;
         c = a + b;
+        std::cout << c;
         // Verify
         assert(c == "abcabc");
     }

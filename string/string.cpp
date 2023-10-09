@@ -19,11 +19,12 @@ String::String(char ch)
 
 String::String(const char s[])
 {
-    while (s[stringSize] != 0)
+    int j = 0;
+    while (s[j] != 0)
     {
-        ++stringSize;
+        ++j;
     }
-    ++stringSize;
+    stringSize = j + 1;
 
     str = new char[stringSize];
     for (int i = 0; i < stringSize - 1; ++i)
@@ -95,7 +96,9 @@ String &String::operator+=(const String &rhs)
     stringSize += rhs.stringSize - 1;
     char temp[stringSize];
     int i = 0;
-    while (i < length())
+
+    // copys the 2 strings into a temp character array
+    while (i < offset)
     {
         temp[i] = str[i];
         ++i;
@@ -107,7 +110,13 @@ String &String::operator+=(const String &rhs)
         ++i;
     }
     temp[stringSize - 1] = 0;
-    str = temp;
+    delete[] str;
+    str = new char[stringSize];
+
+    // copies the temp array into the string array
+    for (int j = 0; j < stringSize; ++j)
+        str[j] = temp[j];
+
     return *this;
 }
 
@@ -119,7 +128,7 @@ String operator+(String lhs, const String &rhs)
 bool String::operator==(const String &rhs) const
 {
     int i = 0;
-    while (str[i] != 0 && str[i] == rhs.str[i])
+    while (str[i] != '\0' && str[i] == rhs.str[i] && rhs.str[i] != '\0')
         ++i;
     return str[i] == rhs.str[i];
 }
