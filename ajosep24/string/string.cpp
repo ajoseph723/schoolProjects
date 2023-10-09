@@ -11,7 +11,6 @@ String::String()
 
 String::String(char ch)
 {
-
     stringSize = 2;
     str = new char[stringSize];
     str[0] = ch;
