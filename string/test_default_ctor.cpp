@@ -1,4 +1,4 @@
-// bigint Test Program
+// String Test Program
 //
 // Tests:  default constructor, uses ==
 #include <iostream>
@@ -11,7 +11,7 @@ int main()
     String a;
 
     // Verify
-    assert(a == "");
+    assert(a == '\0');
 
     std::cout << "Done testing default constructor." << std::endl;
     return 0;
