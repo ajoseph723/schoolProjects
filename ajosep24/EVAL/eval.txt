@@ -5,9 +5,13 @@ Lab 2: 10
 Lab 3: 8 - Not enough unique test cases.
 Lab 4: 9 - You need create functions that return nothing and take no parameters.
 Lab 5: 10
+Lab 6: 10
 
 Project 1: 
 M1: 100
 M2: 70 - No test cases for []; Code fails at when testing [].
 M3: 70 - (Regrade) Missing multiply.cpp; missing .txt input files; Need more test cases for times10 and digit. 
 Bonus: 
+
+Project 2: 
+M1: 75 - Fails your tests because test_ctor_charArray.cpp is missing; Fails instructor's tests for test_lessThan.cpp and test_input.cpp because log_1_tiny.txt is missing; not enough test cases.
