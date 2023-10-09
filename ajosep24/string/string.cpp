@@ -4,39 +4,73 @@
 
 String::String()
 {
+    stringSize = 1;
+    str = new char[stringSize];
     str[0] = 0;
 }
 
 String::String(char ch)
 {
+
+    stringSize = 2;
+    str = new char[stringSize];
     str[0] = ch;
     str[1] = 0;
 }
 
 String::String(const char s[])
 {
-    int i = 0;
-    while (s[i] != 0)
+    while (s[stringSize] != 0)
     {
-        if (i >= STRING_SIZE - 1)
-            break;
-        str[i] = s[i];
-        ++i;
+        ++stringSize;
     }
-    str[i] = 0;
+    ++stringSize;
+
+    str = new char[stringSize];
+    for (int i = 0; i < stringSize - 1; ++i)
+        str[i] = s[i];
+    str[stringSize - 1] = 0;
+}
+
+String::String(const String &actual)
+{
+    stringSize = actual.stringSize;
+    str = new char[stringSize];
+    for (int i = 0; i < stringSize; ++i)
+    {
+        str[i] = actual.str[i];
+    }
+}
+
+String::~String()
+{
+    delete[] str;
+}
+
+void String::swap(String &rhs)
+{
+    char *temp = str;
+    str = rhs.str;
+    rhs.str = temp;
+    int tstringSize = stringSize;
+    stringSize = rhs.stringSize;
+    rhs.stringSize = tstringSize;
+}
+
+String &String::operator=(String rhs)
+{
+    swap(rhs);
+    return *this;
 }
 
 int String::capacity() const
 {
-    return STRING_SIZE - 1;
+    return stringSize - 1;
 }
 
 int String::length() const
 {
-    int i = 0;
-    while (str[i] != 0)
-        ++i;
-    return i;
+    return stringSize - 1;
 }
 
 // REQUIRES: 0 <= i < length ()
@@ -59,13 +93,22 @@ String &String::operator+=(const String &rhs)
 {
     int offset = length();
     int rhsLen = rhs.length();
+    stringSize += rhs.stringSize - 1;
+    char temp[stringSize];
     int i = 0;
-    while (i < rhsLen)
+    while (i < length())
     {
-        str[offset + i] = rhs.str[i];
+        temp[i] = str[i];
         ++i;
     }
-    str[offset + i] = 0;
+    i = 0;
+    while (i < rhsLen)
+    {
+        temp[offset + i] = rhs.str[i];
+        ++i;
+    }
+    temp[stringSize - 1] = 0;
+    str = temp;
     return *this;
 }
 
@@ -123,7 +166,7 @@ String String::substr(int start, int end) const
 std::istream &operator>>(std::istream &stream, String &obj)
 {
     // makes a character array the size of STRING_SIZE - 1
-    char a[STRING_SIZE - 1];
+    char a[200];
     stream >> a;
     obj = a;
     return stream;

@@ -19,7 +19,7 @@ int main()
     {
         String a("abc");
 
-        assert(a.capacity() == (STRING_SIZE - 1));
+        assert(a.capacity() == (a.length()));
     }
 
     std::cout << "Done testing length and capacity." << std::endl;

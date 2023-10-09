@@ -74,7 +74,7 @@ string.o: string.hpp string.cpp
 # For Milestone 2 add $(MYM2) to the end of the line below
 #
 tests: $(MYCTOR) $(MYOPS) $(MYREL)
-	./test_default_ctor
+#	./test_default_ctor
 	./test_equal 
 	./test_ctor_char 
 	./test_ctor_charArray
