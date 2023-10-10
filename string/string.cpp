@@ -1,6 +1,7 @@
 #include "string.hpp"
 #include <iostream>
 #include <cassert>
+#include <fstream>
 
 String::String()
 {
@@ -11,10 +12,19 @@ String::String()
 
 String::String(char ch)
 {
-    stringSize = 2;
-    str = new char[stringSize];
-    str[0] = ch;
-    str[1] = 0;
+    if (ch == 0)
+    {
+        stringSize = 1;
+        str = new char[stringSize];
+        str[0] = 0;
+    }
+    else
+    {
+        stringSize = 2;
+        str = new char[stringSize];
+        str[0] = ch;
+        str[1] = 0;
+    }
 }
 
 String::String(const char s[])
@@ -27,9 +37,9 @@ String::String(const char s[])
     stringSize = j + 1;
 
     str = new char[stringSize];
-    for (int i = 0; i < stringSize - 1; ++i)
+    for (int i = 0; i < stringSize; ++i)
         str[i] = s[i];
-    str[stringSize - 1] = 0;
+    str[stringSize] = 0;
 }
 
 String::String(const String &actual)
@@ -70,14 +80,14 @@ int String::capacity() const
 
 int String::length() const
 {
-    return stringSize - 1;
+    return capacity();
 }
 
 // REQUIRES: 0 <= i < length ()
 char &String::operator[](int i)
 {
     assert(1 >= 0);
-    assert(i < length());
+    assert(i <= length());
     return str[i];
 }
 
@@ -85,7 +95,7 @@ char &String::operator[](int i)
 char String::operator[](int i) const
 {
     assert(1 >= 0);
-    assert(i < length());
+    assert(i <= length());
     return str[i];
 }
 
@@ -136,21 +146,21 @@ bool String::operator==(const String &rhs) const
 bool String::operator<(const String &rhs) const
 {
     int i = 0;
-    while ((str[i] != 0 && rhs.str[i] != 0) && (str[i] == rhs.str[i]))
+    while ((str[i] != 0 && rhs[i] != 0) && (str[i] == rhs.str[i]))
         ++i;
     return str[i] < rhs.str[i];
 }
 
-bool operator==(char lhs[], const String &rhs) { return String(lhs) == rhs; }
+bool operator==(const char lhs[], const String &rhs) { return String(lhs) == rhs; }
 bool operator==(char lhs, const String &rhs) { return String(lhs) == rhs; }
 
-bool operator<(char lhs[], const String &rhs) { return String(lhs) < rhs; }
+bool operator<(const char lhs[], const String &rhs) { return String(lhs) < rhs; }
 bool operator<(char lhs, const String &rhs) { return String(lhs) < rhs; }
 
 bool operator!=(const String &lhs, const String &rhs) { return !(lhs == rhs); }
-bool operator>(const String &lhs, const String &rhs) { return lhs > rhs; }
+bool operator>(const String &lhs, const String &rhs) { return rhs < lhs; }
 
-bool operator<=(const String &lhs, const String &rhs) { return !(lhs > rhs); }
+bool operator<=(const String &lhs, const String &rhs) { return !(rhs < lhs); }
 bool operator>=(const String &lhs, const String &rhs) { return !(lhs < rhs); }
 
 String String::substr(int start, int end) const
@@ -174,9 +184,9 @@ String String::substr(int start, int end) const
 std::istream &operator>>(std::istream &stream, String &obj)
 {
     // makes a character array the size of STRING_SIZE - 1
-    char a[200];
-    stream >> a;
-    obj = a;
+    char ch[200];
+    stream >> ch;
+    obj = ch;
     return stream;
 }
 
