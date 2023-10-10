@@ -186,7 +186,7 @@ std::istream &operator>>(std::istream &stream, String &obj)
     // makes a character array the size of STRING_SIZE - 1
     char ch[200];
     stream >> ch;
-    obj = ch;
+    obj = String(ch);
     return stream;
 }
 
