@@ -14,4 +14,5 @@ M3: 70 - (Regrade) Missing multiply.cpp; missing .txt input files; Need more tes
 Bonus: 
 
 Project 2: 
-M1: 75 - Fails your tests because test_ctor_charArray.cpp is missing; Fails instructor's tests for test_lessThan.cpp and test_input.cpp because log_1_tiny.txt is missing; not enough test cases.
+M1: 75 - Fails your tests because test_ctor_charArray is missing; Fails instructor's tests for test_lessThan and test_input because log_1_tiny.txt is missing; Not enough test cases.
+M2: 60 - Missing oracle test files; Stil fails the test oracles after copying due to undefined references; Fails to run your test cases due to missing files.
