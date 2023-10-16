@@ -30,17 +30,22 @@ String::String(char ch)
 
 String::String(const char s[])
 {
-    int j = 0;
-    while (s[j] != 0)
+    int len = 0;
+    while (s[len] != '\0')
     {
-        ++j;
+        len++;
     }
-    stringSize = j + 1;
 
-    str = new char[stringSize];
-    for (int i = 0; i < stringSize; ++i)
+    str = new char[len + 1];
+
+    for (int i = 0; i < len; i++)
+    {
         str[i] = s[i];
-    str[stringSize] = 0;
+    }
+
+    str[len] = '\0';
+
+    stringSize = len + 1;
 }
 
 String::String(const String &actual)
