@@ -2,6 +2,7 @@
 #include <iostream>
 #include <cassert>
 #include <fstream>
+#include <vector>
 
 String::String()
 {
@@ -104,10 +105,10 @@ String &String::operator+=(const String &rhs)
     int offset = length();
     int rhsLen = rhs.length();
     stringSize += rhs.stringSize - 1;
-    char temp[stringSize];
+    char *temp = new char[stringSize];
     int i = 0;
 
-    // copys the 2 strings into a temp character array
+    // Copy the current string into the temp character array
     while (i < offset)
     {
         temp[i] = str[i];
@@ -120,12 +121,10 @@ String &String::operator+=(const String &rhs)
         ++i;
     }
     temp[stringSize - 1] = 0;
-    delete[] str;
-    str = new char[stringSize];
 
-    // copies the temp array into the string array
-    for (int j = 0; j < stringSize; ++j)
-        str[j] = temp[j];
+    // Delete the old string and update the pointer
+    delete[] str;
+    str = temp;
 
     return *this;
 }
@@ -229,4 +228,24 @@ int String::findstr(int start, const String &obj) const
         i = findch(i, obj[0]) + 1;
     }
     return -1;
+}
+
+std::vector<String> String::split(char ch) const
+{
+    std::vector<String> tempVec;
+    int first = 0;
+    int last = findch(first, ch);
+    String temp;
+
+    while (last != -1)
+    {
+        temp = substr(first, last - 1);
+        tempVec.push_back(temp);
+        first = last + 1;
+        last = findch(first, ch);
+    }
+    temp = substr(first, length() - 1);
+    tempVec.push_back(temp);
+
+    return tempVec;
 }

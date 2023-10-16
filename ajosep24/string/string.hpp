@@ -19,6 +19,7 @@
 #define CS23001_STRING_INTERFACE_HPP
 
 #include <iostream>
+#include <vector>
 
 // CLASS INV: str[length()] == 0             &&
 //            length()      == capacity()    &&
@@ -48,6 +49,8 @@ public:
 
     friend std::ostream &operator<<(std::ostream &, const String &);
     friend std::istream &operator>>(std::istream &, String &);
+
+    std::vector<String> split(char) const;
 
 private:
     char *str;      // Pointer to char[]
