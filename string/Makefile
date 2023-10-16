@@ -35,7 +35,7 @@ OPTIONS = -g -Werror -W -Wunused -Wuninitialized -Wshadow -std=c++17
 MYCTOR = test_default_ctor test_ctor_charArray test_ctor_char
 MYREL  = test_equal test_lessThan 
 MYOPS  = test_concat test_input test_subscript test_len_cap test_find_char test_find_string test_substring 
-MYM2   = test_ctor_copy test_swap_assign
+MYM2   = test_ctor_copy test_swap_assign test_split
 
 
 ###############################################################
@@ -45,7 +45,7 @@ MYM2   = test_ctor_copy test_swap_assign
 CTOR = testoracle_ctor_default testoracle_ctor_char  testoracle_ctor_charArray 
 REL  = testoracle_equal testoracle_lessThan 
 COPY = testoracle_ctor_copy testoracle_assign testoracle_swap_assign
-OPS  = testoracle_concat testoracle_subscript testoracle_len_cap testoracle_input testoracle_find_char testoracle_find_string testoracle_substring 
+OPS  = testoracle_concat testoracle_subscript testoracle_len_cap testoracle_input testoracle_find_char testoracle_find_string testoracle_substring testoracle_split
 
 
 ###############################################################
@@ -89,6 +89,7 @@ tests: $(MYCTOR) $(MYOPS) $(MYREL) $(MYM2)
 #Milestone 2
 	./test_ctor_copy 
 	./test_swap_assign 
+	./test_split
 
 
 
@@ -123,7 +124,7 @@ oracle: $(CTOR) $(REL) $(COPY) $(OPS)
 	./testoracle_substring
 	./testoracle_find_char 
 	./testoracle_find_string 
-#	./testoracle_split
+	./testoracle_split
 
 ###############################################################
 # Run test oracle with valgrind for Milestone 2 and 3
