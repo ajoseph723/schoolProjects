@@ -146,7 +146,7 @@ oracle-mem: $(CTOR) $(REL) $(COPY) $(OPS)
 	valgrind ./testoracle_substring
 	valgrind ./testoracle_find_char 
 	valgrind ./testoracle_find_string 
-#	valgrind ./testoracle_split
+	valgrind ./testoracle_split
 
 
 ###############################################################
