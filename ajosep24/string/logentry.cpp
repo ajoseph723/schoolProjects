@@ -14,6 +14,7 @@
 #include "logentry.hpp"
 #include <iostream>
 #include <vector>
+#include <fstream>
 
 void Date::setYear(String s)
 {
@@ -27,7 +28,7 @@ void Date::setYear(String s)
     year = temp;
 }
 
-Time::Time(String hr, String min, String sec)
+void Time::setTime(String hr, String min, String sec)
 {
     int temp = 0;
     for (int i = 0; i < hr.length(); ++i)
@@ -62,6 +63,7 @@ Time::Time(String hr, String min, String sec)
 //
 LogEntry::LogEntry(String s)
 {
+    original = s;
     // making the string into a vector of strings
     std::vector<String> vec = s.split(' ');
 
@@ -87,7 +89,8 @@ LogEntry::LogEntry(String s)
         date.setYear(yearVec[0]);
 
         // setting the time
-        Time tempTime(yearVec[1], yearVec[2], yearVec[3]);
+        Time tempTime;
+        tempTime.setTime(yearVec[1], yearVec[2], yearVec[3]);
         time = tempTime;
 
         // getting request
@@ -114,29 +117,66 @@ LogEntry::LogEntry(String s)
 std::vector<LogEntry> parse(std::istream &in)
 {
     std::vector<LogEntry> result;
+    char ch;
+    String tempLine;
+    in.get(ch);
+    while (!in.eof())
+    {
+        if (ch != '\n')
+        {
+            tempLine += ch;
+            in.get(ch);
+        }
+        else
+        {
+            LogEntry tempLog(tempLine);
+            result.push_back(tempLog);
+            tempLine = "";
+            in.get(ch);
+        }
+    }
+    return result;
+}
 
-        return result;
+int LogEntry::getBytes() const
+{
+    return number_of_bytes;
 }
 
 // REQUIRES:
 // ENSURES:
 //
-void output_all(std::ostream &out, const std::vector<LogEntry> &)
+void output_all(std::ostream &out, const std::vector<LogEntry> &allLogs)
 {
+    int vecSize = allLogs.size();
+    for (int i = 0; i < vecSize; ++i)
+    {
+        out << allLogs[i].original << '\n';
+    }
 }
 
 // REQUIRES:
 // ENSURES:
 //
-void by_host(std::ostream &out, const std::vector<LogEntry> &)
+void by_host(std::ostream &out, const std::vector<LogEntry> &allLogs)
 {
+    int vecSize = allLogs.size();
+    for (int i = 0; i < vecSize; ++i)
+    {
+        out << allLogs[i].host << '\n';
+    }
 }
 
-/// REQUIRES:
+// REQUIRES:
 // ENSURES:
 //
-int byte_count(const std::vector<LogEntry> &)
+int byte_count(const std::vector<LogEntry> &allLogs)
 {
-
-    return 0;
+    int total = 0;
+    int vecSize = allLogs.size();
+    for (int i = 0; i < vecSize; ++i)
+    {
+        total += allLogs[i].getBytes();
+    }
+    return total;
 }

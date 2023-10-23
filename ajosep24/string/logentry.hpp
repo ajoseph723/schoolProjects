@@ -34,6 +34,7 @@ class Time
 {
 public:
     Time(){};
+    void setTime(String, String, String);
 
 private:
     int hour, minute, second;
@@ -45,6 +46,9 @@ public:
     LogEntry(){};
     LogEntry(String);
     friend std::ostream &operator<<(std::ostream &, const LogEntry &);
+    int getBytes() const;
+    friend void output_all(std::ostream &, const std::vector<LogEntry> &);
+    friend void by_host(std::ostream &, const std::vector<LogEntry> &);
 
 private:
     String host;
@@ -53,6 +57,7 @@ private:
     String request;
     String status;
     int number_of_bytes;
+    String original;
 };
 
 //
@@ -60,8 +65,7 @@ private:
 //
 
 std::vector<LogEntry> parse(std::istream &);
-void output_all(std::ostream &, const std::vector<LogEntry> &);
-void by_host(std::ostream &, const std::vector<LogEntry> &);
+
 int byte_count(const std::vector<LogEntry> &);
 
 #endif
