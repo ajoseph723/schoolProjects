@@ -7,6 +7,7 @@ Lab 4: 9 - You need create functions that return nothing and take no parameters.
 Lab 5: 10
 Lab 6: 10
 Lab 7: 10
+Lab 9: 10
 
 Project 1: 
 M1: 100
@@ -18,3 +19,5 @@ Project 2:
 M1: 75 - Fails your tests because test_ctor_charArray is missing; Fails instructor's tests for test_lessThan and test_input because log_1_tiny.txt is missing; Not enough test cases.
 M2: 80 - (Regrade) Missing oracle test files; Missing test_swap_assign and test_ctor_charArray test files; No enough test cases.
 M3: 95 - Missing test oracle files
+M4: 100
+Bonus: 
