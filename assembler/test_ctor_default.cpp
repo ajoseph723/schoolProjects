@@ -1,6 +1,6 @@
 //  Stack class test program
 //
-//  Tests: XXX
+//  Tests: stack(), Uses: empty()
 //
 
 #include "stack.hpp"
@@ -13,17 +13,16 @@ int main()
     {
         //------------------------------------------------------
         // SETUP FIXTURE
-        stack<int> x;
 
         // TEST
-        x.foo();
+        stack<int> x;
 
         // VERIFY
-        assert(SOMECONDITION);
+        assert(x.empty());
     }
 
     // ADD ADDITIONAL TESTS AS NECESSARY
 
-    std::cout << "Done testing XXX." << std::endl;
+    std::cout << "Done testing default constructor." << std::endl;
     return 0;
 }

@@ -1,6 +1,6 @@
 //  Stack class test program
 //
-//  Tests: XXX
+//  Tests: copy constructor, Uses: swap()
 //
 
 #include "stack.hpp"
@@ -14,16 +14,11 @@ int main()
         //------------------------------------------------------
         // SETUP FIXTURE
         stack<int> x;
-
-        // TEST
-        x.foo();
-
-        // VERIFY
-        assert(SOMECONDITION);
     }
+    std::cout << "Destructor ran." << std::endl;
 
     // ADD ADDITIONAL TESTS AS NECESSARY
 
-    std::cout << "Done testing XXX." << std::endl;
+    std::cout << "Done testing destructorxs." << std::endl;
     return 0;
 }

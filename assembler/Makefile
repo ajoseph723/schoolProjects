@@ -18,7 +18,7 @@ STRING_PATH  = $(shell if test -f string.cpp; then echo ""; else echo "../string
 
 #===========================================================================
 # Your STACK tests here.
-STACK_TESTS =  test_ctor_default test_push_pop test_assign test_ctor_copy
+STACK_TESTS =  test_ctor_default test_push_pop test_assign test_ctor_copy test_assign test_dtor
 
 
 #===========================================================================
@@ -59,9 +59,9 @@ test_%.o: string.hpp string.cpp stack.hpp test_%.cpp
 tests: stack.hpp string.hpp string.cpp ${STACK_TESTS}
 	./test_ctor_default
 	./test_push_pop
-#	./test_assign
-#	./test_ctor_copy
-#   ./test_dtor
+	./test_assign
+	./test_ctor_copy
+	./test_dtor
 
 
 #===========================================================================
