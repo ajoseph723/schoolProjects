@@ -8,6 +8,7 @@ Lab 5: 10
 Lab 6: 10
 Lab 7: 10
 Lab 9: 10
+Lab 10: 10
 
 Project 1: 
 M1: 100
@@ -21,3 +22,6 @@ M2: 80 - (Regrade) Missing oracle test files; Missing test_swap_assign and test_
 M3: 95 - Missing test oracle files
 M4: 100
 Bonus: 
+
+Project 3: 
+M1: 100
