@@ -19,10 +19,15 @@ String inToPost(String &original)
             right = input.pop();
             oper = input.pop();
             left = input.pop();
-            input.push(right + oper + left);
+            input.push(left + right + oper);
         }
         else if (original[i] != '(' && original[i] != ' ')
-            input.push(original[i]);
+            temp += original[i];
+        else if (original[i] == ' ' && temp.length() > 0)
+        {
+            input.push(temp);
+            temp = "";
+        }
         ++i;
     }
     return input.pop();
