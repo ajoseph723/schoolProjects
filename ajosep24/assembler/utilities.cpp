@@ -45,7 +45,7 @@ void assemble(String &original, std::ostream &out) {
     std::vector<String> postVec = post.split(' ');
     
     out << "Infix: " << original << std::endl 
-        << "Postfix" << post << std::endl << std::endl;
+        << "Postfix: " << post << std::endl << std::endl;
 
     int i = 0;
 
@@ -64,7 +64,7 @@ void assemble(String &original, std::ostream &out) {
     }
 }
 
-String evaluate(String &lhs, String &rhs, String &op, std::ostream &out, int& temp) {
+String evaluate(String &lhs, String &rhs, String &op, std::ostream &out, int &temp) {
     out << "  LD  " << lhs << std::endl;
     
     if(op == "+")
@@ -85,19 +85,10 @@ String evaluate(String &lhs, String &rhs, String &op, std::ostream &out, int& te
 
 String numToString(int num) {
     String final;
-    int temp;
-    int i = 0;
-    char ch;
-    while(num >= 10){
-        temp = num;
-        i = 0;
-        while(temp >= 10) {
-            temp = temp / 10;
-            ++i;
-        }
-        ch = temp - '0';
-        final += ch;
-        num = num - (temp * 10^i);
+    while(num > 0){
+        char ch = '0' + num % 10;
+        final = ch + final;
+        num /= 10;
     }
     return final;
 }
