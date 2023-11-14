@@ -5,7 +5,12 @@
 #include "stack.hpp"
 #include "../string/string.hpp"
 
-String inToPost (String&);
+String inToPost(String &);
 
+void assemble(String &, std::ostream &);
+
+String evaluate(String &, String &, String &, std::ostream &, int&);
+
+String numToString(int);
 
 #endif
