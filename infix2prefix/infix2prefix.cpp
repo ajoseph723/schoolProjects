@@ -1,6 +1,6 @@
 #include <iostream>
-#include "stack.hpp"
-#include "string.hpp"
+#include "../assembler/stack.hpp"
+#include "../string/string.hpp"
 #include <fstream>
 
 String inToPre(String &original);
