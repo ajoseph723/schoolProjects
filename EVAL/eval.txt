@@ -27,3 +27,5 @@ Bonus:
 Project 3: 
 M1: 100
 M2: 85 - The output should show the infix expression; The postfix expression should have spaces just like the example in the project webpage; You also need a test file .txt to test the postfix functionality.
+M3: 90 - The program generates a corrupted txt file output when specified; It doesn't open.
+Bonus: 
