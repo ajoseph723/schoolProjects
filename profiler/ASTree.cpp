@@ -124,6 +124,8 @@ AST::AST(nodes t, const std::string& s) {
 AST::~AST() {
     //TODO: IMPLEMENT
     //Recursively traverse tree and delete from bottom up
+    for(AST* tempnode : child)
+    delete tempnode;
 }
 
 
@@ -134,6 +136,20 @@ AST::AST(const AST& actual) {
     //Recursively traverse actual and
     //make a copy of each node putting it
     //into this.
+    nodeType = actual.nodeType;
+    // if category copy tags and child node
+    if(nodeType == category) {
+        tag = actual.tag;
+        closeTag = actual.closeTag;
+
+        //copys all children by running copy constructor recursively
+        for(AST* tempnode : actual.child)
+            child.push_back(new AST(*tempnode));
+    } else {
+        // if not child, copys text
+        text = actual.text;
+    }
+    
 }
 
 
@@ -142,6 +158,27 @@ AST::AST(const AST& actual) {
 void AST::swap(AST& rhs) {
     //TODO: IMPLEMENT
     //Swap all the top level childern (pointers to AST)
+
+    //swapping the nodes
+    nodes tempType = nodeType;
+    nodeType = rhs.nodeType;
+    rhs.nodeType = tempType;
+    
+    //if category node, swap tags and children
+    if(nodeType == category) {
+        
+        tag.swap(rhs.tag);
+
+        closeTag.swap(rhs.closeTag);
+
+        //swapping children recusively
+        child.swap(rhs.child);
+    } else {
+        //swap text if not category
+        text.swap(rhs.text);
+    }
+
+
 }
 
 /// Assignment for AST
