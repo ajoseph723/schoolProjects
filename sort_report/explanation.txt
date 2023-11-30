@@ -1,0 +1,4 @@
+Bubble_sort takes the longest because it iterates through the vector as many
+times as there is items in the vector. So if there are 100 items in the vector
+it will loop through the vector 100 times, checking each index along the way,
+taking up a lot of time.
