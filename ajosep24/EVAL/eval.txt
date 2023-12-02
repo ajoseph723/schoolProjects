@@ -10,6 +10,7 @@ Lab 7: 10
 Lab 9: 10
 Lab 10: 10
 Lab 11: 10
+Lab 12: 10
 
 Project 1: 
 M1: 100
@@ -29,3 +30,6 @@ M1: 100
 M2: 85 - The output should show the infix expression; The postfix expression should have spaces just like the example in the project webpage; You also need a test file .txt to test the postfix functionality.
 M3: 90 - The program generates a corrupted txt file output when specified; It doesn't open.
 Bonus: 
+
+Project 4: 
+M1: 100
