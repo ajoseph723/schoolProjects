@@ -237,6 +237,26 @@ void AST::mainHeader(const std::vector<std::string>& profileName,
     //Add a node with #include "profile.hpp"
     //For each file profile name, add a node with a profile
     //   declaration "profile foo_cpp("foo.cpp");"
+
+    //base
+    std::string temp = "#include \"profile.hpp\"\n";
+    std::list<AST*>::const_iterator iter = child.begin();
+    while(((*iter)->tag != "function")) ++iter;
+    child.insert(iter, new AST(token, temp));
+
+    temp = "profile ";
+    for(std::vector<std::string>::const_iterator str = profileName.begin(); str != profileName.end(); ++str) temp += *str;
+    child.insert(iter, new AST(token, temp));
+
+    std::string fileString = "(\"";
+    for(std::vector<std::string>::const_iterator str = profileName.begin(); str != profileName.end(); ++str) fileString += *str;
+
+    temp = "_cpp";
+    size_t pos = fileString.find(temp);
+    fileString.erase(pos, temp.length());
+    fileString += ".cpp\");\n";
+    child.insert(iter, new AST(token, fileString));
+    child.insert(iter, new AST(whitespace, "\n"));
 }
 
 
@@ -251,6 +271,21 @@ void AST::fileHeader(const std::string& profileName) {
     //Skip down a couple lines or find first function and put it before it
     //Add #include "profile.hpp"
     //Add in the external declaration for that file "extern profile foo_cpp;"
+    std::list<AST*>::const_iterator iter = child.begin();
+    while(((*iter)->tag != "function")) ++iter;
+
+    std::string temp = "profile " + profileName;
+
+    child.insert(iter, new AST(token, temp));
+
+    std::string fileString = "(\"" + profileName;
+
+    temp = "_cpp";
+    size_t pos = fileString.find(temp);
+    fileString.erase(pos, temp.length());
+    fileString += "ccpp\");\n";
+    child.insert(iter, new AST(token, fileString));
+    child.insert(iter, new AST(whitespace, "\n"));
 }
 
 
@@ -266,6 +301,20 @@ void AST::mainReport(const std::vector<std::string>& profileName) {
     // -Decrement it once (to skip the "}")
     // -Search backwards for a "return" tag
     // -Insert the report statements before the return
+
+    std::list<AST*>::const_iterator iter = child.begin();
+    while(iter != child.end()) {
+        if((*iter)->tag =="function") {
+            if((*iter)->getChild("name")->getName() == "main") {
+                AST *blockFinder = (*iter)->getChild("block")->getChild("block_content");
+                std::string result;
+                for(std::vector<std::string>::const_iterator str = profileName.begin(); str != profileName.end(); ++str)
+                    result += "std::cout << " + (*str) + " << std::endl;\n";
+                blockFinder->child.insert(----blockFinder->child.end(), new AST(token, result));
+            }
+        }
+        ++iter;
+    }
 
 }
 
