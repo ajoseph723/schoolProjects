@@ -11,6 +11,7 @@ Lab 9: 10
 Lab 10: 10
 Lab 11: 10
 Lab 12: 10
+Lab 13: 10
 
 Project 1: 
 M1: 100
@@ -33,3 +34,4 @@ Bonus:
 
 Project 4: 
 M1: 100
+M2: 80 - fileHeader needs to add external declarations such as (extern profile foo_cpp) to non-main files
