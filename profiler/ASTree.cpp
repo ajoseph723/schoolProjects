@@ -333,6 +333,22 @@ void AST::functionCount(const std::string& profileName) {
     //        Insert the count as first child in <block_content>
     //        Example: main1_cpp.count(__LINE__, "main");
 
+    for (auto& childNode : child) {
+        if (childNode->nodeType == category && childNode->tag == "function"){
+            std::string functionName = childNode->getChild("name")->text;
+            
+            AST* blockNode = childNode->getChild("block");
+            if (blockNode != nullptr) {
+                AST* blockContentNode = blockNode->getChild("block_content");
+
+                if (blockContentNode != nullptr) {
+                    AST* countNode = new AST(token, profileName + ".count(__LINE__, \"" + functionName + "\");");
+                    blockContentNode->child.push_front(countNode);
+                }
+            }
+        }
+    }
+ 
 }
 
 
@@ -351,6 +367,19 @@ void AST::lineCount(const std::string& profileName) {
     //          Example: foo_cpp.count(__LINE__);
     //       Else call lineCount if not a stop tag  See isStopTag()
     //   Else (token or whitespace) do nothing
+
+    for (auto& childNode : child) {
+        if (childNode->nodeType == category) {
+            if (childNode->tag == "expr_stmt") {
+                std::string countCode = profileName + ".count(__LINE__);";
+                AST* countNode = new AST(token, countCode);
+                auto it = std::next(childNode->child.begin());
+                childNode->child.insert(it, countNode);
+            } else if (!isStopTag(childNode->tag)) {
+                childNode->lineCount(profileName);
+            }
+        }
+    }
     
 }
 
