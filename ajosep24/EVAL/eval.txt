@@ -35,3 +35,5 @@ Bonus:
 Project 4: 
 M1: 100
 M2: 80 - fileHeader needs to add external declarations such as (extern profile foo_cpp) to non-main files
+M3: 70 - fileHeader still not working; mainHeader doesn't produce correct profiling statements; functionCount should use the function's name in the profiling statement; Can't compile p-sort.
+Bonus: 
